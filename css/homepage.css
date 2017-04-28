@@ -1,0 +1,344 @@
+@import url("/node_modules/normalize.css/normalize.css");
+@import url("/node_modules/font-awesome/css/font-awesome.min.css");
+
+body {
+  background-color: #FFF;
+
+  font-weight: 400;
+  font-family: Arial, sans-serif;
+}
+
+.clearfix::after {
+  content: '';
+  display: table;
+  clear: both;
+}
+
+/*
+ *** Button atom
+**/
+.Button {
+  display: inline-block;
+  padding: 0 16px;
+  background: none;
+  border-radius: 2px;
+  border: 1px solid transparent;
+
+  vertical-align: middle;
+
+  white-space: nowrap;
+
+  cursor: pointer;
+  -ms-touch-action: manipulation;
+      touch-action: manipulation;
+  -webkit-appearance: none;
+     -moz-appearance: none;
+          appearance: none;
+  box-shadow: none;
+  outline: none;
+
+  -webkit-transition: background 450ms cubic-bezier(0.23, 1, 0.32, 1) 0ms;
+  transition: background 450ms cubic-bezier(0.23, 1, 0.32, 1) 0ms;
+}
+
+.Button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+.Button:hover {}
+.Button:focus {}
+.Button:active {}
+
+/*
+ *** Input atom
+**/
+.Input {
+  display: block;
+  width: 100%;
+  padding: 10px 16px;
+  background-color: #FFF;
+  border: 1px solid #ecf0f1;
+  border-radius: 2px;
+
+  font: 600 16px/16px Arial, sans-serif;
+  color: #2c3e50;
+
+  -webkit-appearance: none;
+     -moz-appearance: none;
+          appearance: none;
+  box-shadow: none;
+  outline: none;
+}
+
+.Input::-webkit-input-placeholder {font-weight: 400; color: #bdc3c7;}
+.Input::-moz-placeholder {font-weight: 400; color: #bdc3c7;}
+.Input:-ms-input-placeholder {font-weight: 400; color: #bdc3c7;}
+.Input::placeholder {font-weight: 400; color: #bdc3c7;}
+
+.Input:focus {
+  box-shadow: 0 0 5px rgba(44, 62, 80, 0.9)
+}
+
+/*
+*** Player molecule
+**/
+
+.Player {
+  position: relative;
+
+  padding: 10px 20px 10px 120px;
+  background-color: #ecf0f1;
+  border: 1px solid #95a5a6;
+}
+
+.Player--disabled {
+  background-color: #EEE;
+  border-color: #999;
+
+  color: #999;
+}
+
+.Player-name {
+  margin-top: 10px;
+  margin-bottom: 10px;
+
+  text-transform: uppercase;
+  font: 600 16px/20px Arial, sans-serif;
+  color: #2c3e50;
+
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none;
+}
+.Player--winner .Player-name {
+  color: #27ae60;
+}
+
+.Player-image {
+  position: absolute;
+  top: 10px;
+  left: 20px;
+
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+
+  overflow: hidden;
+}
+
+.Player-image img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: 50% 50%;
+}
+
+.Player-button {
+  background-color: #3498db;
+
+  text-transform: uppercase;
+  font-size: 14px;
+  line-height: 36px;
+  color: #fff;
+}
+
+.Player-button:focus {
+  color: #2c3e50;
+  box-shadow: 0 0 5px rgba(44, 62, 80, 0.9);
+}
+
+.Player-button:not([disabled]):hover {
+  background-color: #2980b9;
+}
+
+/*
+*** Match organism
+**/
+
+.Match {
+  padding: 5px;
+
+  border: 1px solid #95a5a6;
+  border-radius: 2px;
+  background-color: #fff;
+}
+
+.Match-list {
+  list-style-type: none;
+  margin-bottom: 0;
+  padding-left: 0;
+}
+
+.Match-list > li:not(:last-child) {
+  margin-bottom: 5px;
+}
+
+/*
+*** Tournament organism
+**/
+.Tournament {
+  list-style-type: none;
+  margin-bottom: 0;
+  padding: 10px;
+  border: 2px solid #7f8c8d;
+  border-radius: 2px;
+}
+
+.Tournament > li:not(:last-child) {
+  margin-bottom: 15px;
+}
+
+.League-tournamentList > li:nth-child(2n) .Tournament {
+  background-color: #ecf0f1;
+}
+
+/*
+*** LeagueHeader organism
+**/
+.LeagueHeader {
+  padding: 15px;
+  background-color: #0F95FC;
+}
+
+.LeagueHeader-title {
+  float: left;
+  margin-top: 0;
+  margin-bottom: 0;
+
+  text-align: center;
+  font: 400 42px/67px Arial, sans-serif;
+  color: #fff;
+}
+
+/*
+*** LeagueControls organism
+**/
+.LeagueControls {
+  position: fixed;
+  right: 15px;
+  bottom: 15px;
+
+  padding: 10px 10px 0 10px;
+  background-color: #134094;
+  border-radius: 2px/10px;
+}
+
+.LeagueControls-button {
+  display: block;
+  width: 100%;
+  margin-bottom: 10px;
+  border-color: #fff;
+
+  line-height: 36px;
+  color: #fff;
+}
+
+.LeagueControls-button:not([disabled]):hover {
+  background-color: #fff;
+
+  color: #2c3e50;
+}
+
+.LeagueControls-button:focus {
+  box-shadow: 0 0 5px rgba(255, 255, 255, 0.9);
+}
+
+/*
+*** AddNewPlayer organism
+**/
+.AddNewPlayer {
+  width: 400px;
+  margin-left: auto;
+  margin-right: auto;
+  padding: 10px;
+  border: 1px solid #fff;
+}
+
+.AddNewPlayer-title {
+  margin-top: 0;
+  margin-bottom: 10px;
+
+  font: 400 24px/24px Arial, sans-serif;
+  color: #fff;
+}
+
+.AddNewPlayer-input {
+  float: left;
+  width: calc(100% - 70px);
+  border-radius: 2px 0 0 2px;
+}
+
+.AddNewPlayer-button {
+  float: right;
+  width: 70px;
+  background-color: #ecf0f1;
+  border: 1px solid #ecf0f1;
+  border-radius: 0 2px 2px 0;
+
+  text-transform: uppercase;
+  font-size: 16px;
+  line-height: 38px;
+}
+
+.AddNewPlayer-button:not([disabled]):hover {
+  background-color: #27ae60;
+
+  color: #fff;
+}
+
+/*
+*** League template
+**/
+.League {
+
+}
+
+.League-tournamentList {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-flex: 1;
+      -ms-flex: 1;
+          flex: 1;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+
+  list-style-type: none;
+  padding-left: 0;
+
+  counter-reset: counter;
+}
+
+.League-tournamentList > li {
+  position: relative;
+
+  margin-left: 15px;
+  margin-right: 15px;
+  padding-top: 35px;
+
+  counter-increment: counter;
+}
+
+.League-tournamentList > li:not(:last-child)::before {
+  content: counter(counter);
+
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+
+  width: 20px;
+  height: 20px;
+  margin: 0 auto;
+  border-radius: 50%;
+  border: 2px solid #7f8c8d;
+
+  text-align: center;
+  font-weight: 600;
+  font-size: 14px;
+  line-height: 20px;
+  color: #7f8c8d;
+}
