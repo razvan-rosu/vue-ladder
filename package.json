@@ -1,0 +1,26 @@
+{
+  "name": "ladder",
+  "version": "1.0.0",
+  "description": "a competition ladder made with vue2",
+  "main": "app.js",
+  "scripts": {
+    "start": "node app.js",
+    "nodemon": "nodemon app.js"
+  },
+  "keywords": [
+    "ladder",
+    "competition",
+    "vuejs",
+    "vue2"
+  ],
+  "author": "Razvan Rosu",
+  "license": "ISC",
+  "devDependencies": {
+    "express": "^4.14.0",
+    "font-awesome": "^4.7.0",
+    "lodash": "^4.17.2",
+    "nodemon": "^1.11.0",
+    "normalize.css": "^5.0.0",
+    "vue": "^2.1.6"
+  }
+}

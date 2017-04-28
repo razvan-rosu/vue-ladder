@@ -1,0 +1,92 @@
+<html>
+  <head>
+    <link href="/images/logo.png" rel="icon" type="image/x-icon" />
+    <title>Ladder</title>
+    <link rel="stylesheet" href="/css/homepage.css">
+  </head>
+  <body>
+    <div id="app">
+      <league :title="pageTitle" :subtitle="formTitle" :players="players"></league>
+      <div class="logo">
+        <img src="" alt="">
+      </div>
+    </div>
+
+    <!-- atom: player -->
+    <template id="template-player">
+      <div class="Player" :class={'Player--disabled':this.winnerSettled,'Player--winner':this.qualified}>
+        <h3 class="Player-name">
+          <slot></slot>
+          <span class="fa" :class="this.qualified === true ? 'fa-check' : ''"></span>
+        </h3>
+        <div class="Player-image">
+          <img :src='"/images/" + this.name + ".jpg"' alt="">
+        </div>
+        <button class="Button Player-button" type="button" @click="qualifyPlayer" :disabled="this.winnerSettled">Qualify</button>
+      </div>
+    </template><!-- player -->
+
+    <!-- molecule: match -->
+    <template id="template-match">
+      <div class="Match">
+        <ul class="Match-list" :players="this.matches">
+          <li v-for="player in players">
+            <player :name="player" :winner-settled="matchPlayed" @resolve-match="playMatch">{{ player }}</player>
+          </li>
+        </ul>
+      </div>
+    </template><!-- match -->
+
+    <!-- organism: tournament -->
+    <template id="template-tournament">
+      <ul class="Tournament">
+        <li v-for="match in matches">
+          <match :players="match"></match>
+        </li>
+      </ul>
+    </template><!-- tournament -->
+
+    <!-- template: page -->
+    <template id="template-league">
+      <div class="League">
+        <header class="LeagueHeader clearfix">
+          <h1 class="LeagueHeader-title">{{title}}</h1>
+          <div class="AddNewPlayer">
+            <h2 class="AddNewPlayer-title">{{ subtitle }}</h2>
+            <div class="clearfix">
+              <input
+                type="text"
+                class="input AddNewPlayer-input"
+                placeholder="New player name"
+                v-model="newPlayerName"
+                :disabled="tournaments.length > 1"/>
+              <button
+                type="button"
+                class="button AddNewPlayer-button"
+                @click="addPlayer"
+                :disabled="tournaments.length > 1">Add</button>
+            </div>
+          </div>
+        </header>
+        <ul class="League-tournamentList" v-if="this.players.length > 0">
+          <li v-for="tournamentPlayers in this.tournaments">
+            <tournament :matches="tournamentPlayers"></tournament>
+          </li>
+        </ul>
+        <div class="LeagueControls">
+          <button type="button" class="Button LeagueControls-button"
+            @click="randomizePlayers"
+            :disabled="tournaments.length > 1"
+          >Randomize players</button>
+          <button type="button" class="Button LeagueControls-button"
+            @click="addTournament">Next stage</button>
+        </div>
+      </div>
+    </template><!-- page -->
+
+     <script src="/node_modules/vue/dist/vue.js"></script>
+    <!--<script src="/node_modules/vue/dist/vue.min.js"></script>-->
+    <script src="/node_modules/lodash/lodash.min.js"></script>
+    <script src="/js/homepage.js"></script>
+  </body>
+</html>
